@@ -7,25 +7,22 @@
     <button role="button" class="btn" @click="leave">Leave</button>
     -->
     <h2>Liste avec</h2>
-    <ul>
-      <li class="users" v-for="user in data.users" :key="user.id">
+    <ul class="users">
+      <li v-for="user in data.users" :key="user.id">
         <avatar :user="user" />
       </li>
     </ul>
+    <button role="button" class="btn" @click="play">Play</button>
     <ul>
-      <li>
-        <data-track
-          v-for="track in data.trackList"
-          :key="track.id"
-          :track="track"
-          :users="data.users"
-        />
+      <li v-for="track in data.trackList" :key="track.id">
+        <data-track :track="track" :users="data.users" />
       </li>
     </ul>
   </main>
 </template>
 
 <script>
+/*global DZ*/
 import playback from "@/playback.service";
 import Avatar from "@/components/Avatar.vue";
 import dataTrack from "@/components/dataTrack.vue";
@@ -34,12 +31,12 @@ export default {
   name: "Home",
   components: {
     Avatar,
-    dataTrack
+    dataTrack,
   },
   data() {
     return {
       id: this.$route.params.reference,
-      data: {}
+      data: {},
     };
   },
   methods: {
@@ -59,7 +56,12 @@ export default {
         console.error(err);
         this.$router.push("/lists");
       }
-    }
+    },
+    play() {
+      DZ.player.playTracks([1256451332], ({ tracks }) => {
+        console.log("blu", tracks);
+      });
+    },
   },
   computed: {},
   async created() {
@@ -70,7 +72,7 @@ export default {
       console.error(err);
       this.$router.push("/lists");
     }
-  }
+  },
 };
 </script>
 
