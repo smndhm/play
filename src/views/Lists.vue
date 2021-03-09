@@ -31,12 +31,12 @@ import Avatar from "@/components/Avatar.vue";
 export default {
   name: "Home",
   components: {
-    Avatar,
+    Avatar
   },
   data() {
     return {
       loading: true,
-      lists: [],
+      lists: []
     };
   },
   methods: {
@@ -58,18 +58,18 @@ export default {
     },
     others(users) {
       const others = users
-        .filter((user) => !user.isCurrent)
-        .map((user) => user.name)
+        .filter(user => !user.isCurrent)
+        .map(user => user.name)
         .join(", ");
       if (others.length) return `Avec ${others}`;
       else return "Liste vide";
-    },
+    }
   },
   async created() {
     this.initApi();
     this.lists = await playback.getLists();
     this.loading = false;
-  },
+  }
 };
 </script>
 

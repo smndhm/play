@@ -16,12 +16,12 @@ export default {
         appId: document.location.host === "smndhm.github.io" ? 255742 : 153461,
         channelUrl: `${document.location.origin}${document.location.pathname}channel.html`,
         player: {
-          onload: (dzInit) => {
+          onload: dzInit => {
             console.log("DZ.init", dzInit); // eslint-disable-line no-console
-          },
-        },
+          }
+        }
       });
-    },
+    }
   },
   mounted() {
     window.dzAsyncInit = () => {
@@ -33,7 +33,7 @@ export default {
       e.async = true;
       document.getElementById("dz-root").appendChild(e);
     })();
-  },
+  }
 };
 </script>
 

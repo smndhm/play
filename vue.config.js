@@ -3,6 +3,6 @@ module.exports = {
   pwa: {
     name: "Play",
     themeColor: "#000000",
-    msTileColor: "#000000",
-  },
+    msTileColor: "#000000"
+  }
 };
