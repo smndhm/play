@@ -31,12 +31,12 @@ export default {
   name: "Home",
   components: {
     Avatar,
-    dataTrack
+    dataTrack,
   },
   data() {
     return {
       id: this.$route.params.reference,
-      data: {}
+      data: {},
     };
   },
   methods: {
@@ -61,12 +61,12 @@ export default {
       DZ.player.playTracks(this.tracks, ({ tracks }) => {
         console.log("blu", tracks);
       });
-    }
+    },
   },
   computed: {
     tracks() {
-      return this.data.trackList.map(track => track.id);
-    }
+      return this.data.trackList.map((track) => track.id);
+    },
   },
   async created() {
     try {
@@ -78,10 +78,13 @@ export default {
     }
   },
   mounted() {
-    DZ.Event.subscribe("player_play", function(evt_name) {
-      console.log("Player is playing", evt_name);
+    DZ.ready((dzReady) => {
+      console.log("DZ.ready", dzReady);
+      DZ.Event.subscribe("player_play", function() {
+        console.log("Player is playing", arguments);
+      });
     });
-  }
+  },
 };
 </script>
 
