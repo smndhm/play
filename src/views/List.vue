@@ -1,19 +1,20 @@
 <template>
   <main id="list">
-    <!-- 
-    <h2>List</h2>
-    <p>This is the list {{ id }}</p>
-    <button role="button" class="btn" @click="join">Join</button>
-    <button role="button" class="btn" @click="leave">Leave</button>
-    -->
-    <h2>Liste avec</h2>
-    <ul class="users">
-      <li v-for="user in data.users" :key="user.id">
-        <avatar :user="user" />
-      </li>
-    </ul>
-    <button role="button" class="btn" @click="play">Play</button>
-    <ul>
+    <div id="users">
+      <ul class="users">
+        <li class="user" v-for="user in data.users" :key="user.id">
+          <avatar :user="user" />
+        </li>
+      </ul>
+      <button role="button" class="btn" @click="join">Join</button>
+      <button role="button" class="btn" @click="leave">Leave</button>
+    </div>
+
+    <div id="play">
+      <button role="button" class="btn" @click="play">Play</button>
+    </div>
+
+    <ul id="tracklist" class="list-item">
       <li v-for="track in data.trackList" :key="track.id">
         <data-track :track="track" :users="data.users" />
       </li>
@@ -80,8 +81,12 @@ export default {
   mounted() {
     DZ.ready((dzReady) => {
       console.log("DZ.ready", dzReady);
-      DZ.Event.subscribe("player_play", function() {
-        console.log("Player is playing", arguments);
+      // Load tracks
+      DZ.player.playTracks(this.tracks, false, ({ tracks }) => {
+        console.log("DZ.player.playTracks", tracks);
+      });
+      DZ.Event.subscribe("current_track", function() {
+        console.log("current_track", arguments);
       });
     });
   },
@@ -90,6 +95,9 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  @apply text-left;
+  @apply text-center;
+  .list-item {
+    @apply text-left;
+  }
 }
 </style>

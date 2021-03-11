@@ -2,9 +2,9 @@
   <main id="lists">
     <h2>Mes listes</h2>
     <p>Retrouvez ici les listes auxquelles vous participez.</p>
-    <ul class="list">
+    <ul>
       <li v-for="list in lists" :key="list.id">
-        <router-link :to="`/lists/${list.id}`">
+        <router-link :to="`/lists/${list.id}`" class="list-item">
           <div class="users">
             <avatar v-for="user in list.users" :key="user.id" :user="user" />
           </div>
@@ -31,12 +31,12 @@ import Avatar from "@/components/Avatar.vue";
 export default {
   name: "Home",
   components: {
-    Avatar
+    Avatar,
   },
   data() {
     return {
       loading: true,
-      lists: []
+      lists: [],
     };
   },
   methods: {
@@ -58,36 +58,36 @@ export default {
     },
     others(users) {
       const others = users
-        .filter(user => !user.isCurrent)
-        .map(user => user.name)
+        .filter((user) => !user.isCurrent)
+        .map((user) => user.name)
         .join(", ");
       if (others.length) return `Avec ${others}`;
       else return "Liste vide";
-    }
+    },
   },
   async created() {
     this.initApi();
     this.lists = await playback.getLists();
     this.loading = false;
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 main {
   @apply text-left;
-  .list li a {
-    @apply flex items-center rounded-full p-2 m-1 border-2 border-gray-400 hover:border-gray-500 hover:bg-gray-50;
-    .others {
-      @apply text-xl ml-2;
-    }
+  .others {
+    @apply text-xl ml-2;
   }
 }
 </style>
 
 <style lang="scss">
+.list-item {
+  @apply flex items-center rounded-full p-2 m-1 bg-blue-50 mb-4 transition-colors hover:bg-blue-100;
+}
 .users {
-  @apply flex-shrink-0 flex;
+  @apply flex-shrink-0 inline-flex align-middle;
   .user + .user {
     @apply -ml-6;
   }

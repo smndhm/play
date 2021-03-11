@@ -1,5 +1,5 @@
 <template>
-  <h3>>>> {{ track.title }}</h3>
+  <h3>{{ track.title }}</h3>
   <div v-if="track.users.length > 1">
     <!-- favorites -->
     <p v-if="favorites.length">
@@ -62,12 +62,12 @@ export default {
   name: "dataTrack",
   props: {
     track: { type: Object, required: true },
-    users: { type: Array, required: true }
+    users: { type: Array, required: true },
   },
   methods: {
     getUserData(userId) {
-      return this.users.find(user => user.id === userId);
-    }
+      return this.users.find((user) => user.id === userId);
+    },
   },
   computed: {
     favorites() {
@@ -94,8 +94,8 @@ export default {
     },
     userTrack() {
       return this.playlists[0];
-    }
-  }
+    },
+  },
 };
 </script>
 
