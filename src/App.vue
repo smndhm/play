@@ -6,6 +6,12 @@
   <router-view />
 </template>
 
+<script>
+export default {
+  name: "App",
+};
+</script>
+
 <style lang="scss" scoped>
 header {
   @apply bg-black flex items-center h-16 px-4;
