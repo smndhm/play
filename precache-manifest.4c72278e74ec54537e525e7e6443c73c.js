@@ -4,8 +4,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/play/channel.html"
   },
   {
-    "revision": "c4fba35cd58742345203",
-    "url": "/play/css/app.c549cada.css"
+    "revision": "ce5d7f6e16a1afa06c90",
+    "url": "/play/css/app.8898e8f9.css"
   },
   {
     "revision": "9a97a761807e894de31e",
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/play/css/list~lists.76895b8d.css"
   },
   {
-    "revision": "bb668339e806d293b9eb49a47299d592",
+    "revision": "d9b8300d5ef192986208d6ea9780efa3",
     "url": "/play/index.html"
   },
   {
-    "revision": "c4fba35cd58742345203",
-    "url": "/play/js/app.3874158e.js"
+    "revision": "ce5d7f6e16a1afa06c90",
+    "url": "/play/js/app.ab0d6eb3.js"
   },
   {
     "revision": "ababa55f5c5c15a84ba9",
