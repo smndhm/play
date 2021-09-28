@@ -9,7 +9,7 @@ const requireAuth = (to, from, next) => {
   ) {
     next({
       path: "/login",
-      query: { redirect: to.fullPath }
+      query: { redirect: to.fullPath },
     });
   } else {
     next();
@@ -19,28 +19,28 @@ const requireAuth = (to, from, next) => {
 const routes = [
   {
     path: "/",
-    component: Home
+    component: Home,
   },
   {
     path: "/login",
-    component: Login
+    component: Login,
   },
   {
     path: "/lists",
     component: () =>
       import(/* webpackChunkName: "lists" */ "../views/Lists.vue"),
-    beforeEnter: requireAuth
+    beforeEnter: requireAuth,
   },
   {
     path: "/lists/:reference",
     component: () => import(/* webpackChunkName: "list" */ "../views/List.vue"),
-    beforeEnter: requireAuth
-  }
+    beforeEnter: requireAuth,
+  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
 });
 
 export default router;

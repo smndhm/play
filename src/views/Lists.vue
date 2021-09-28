@@ -2,9 +2,9 @@
   <main id="lists">
     <h2>Mes listes</h2>
     <p>Retrouvez ici les listes auxquelles vous participez.</p>
-    <ul>
-      <li v-for="list in lists" :key="list.id">
-        <router-link :to="`/lists/${list.id}`" class="list-item">
+    <ul class="list">
+      <li v-for="list in lists" :key="list.id" class="list-item">
+        <router-link :to="`/lists/${list.id}`">
           <div class="users">
             <avatar v-for="user in list.users" :key="user.id" :user="user" />
           </div>
@@ -76,15 +76,25 @@ export default {
 <style lang="scss" scoped>
 main {
   @apply text-left;
-  .others {
-    @apply text-xl ml-2;
+  .list-item {
+    @apply transform transition-transform;
+    @apply active:scale-95;
+    a {
+      @apply flex items-center p-2;
+      .others {
+        @apply text-xl ml-4 mr-2;
+      }
+    }
   }
 }
 </style>
 
 <style lang="scss">
-.list-item {
-  @apply flex items-center rounded-full p-2 m-1 bg-blue-50 mb-4 transition-colors hover:bg-blue-100;
+.list {
+  .list-item {
+    @apply rounded-list-item bg-blue-50 mb-4 transition-colors;
+    @apply hover:bg-blue-100;
+  }
 }
 .users {
   @apply flex-shrink-0 inline-flex align-middle;

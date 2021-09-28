@@ -1,6 +1,6 @@
 const axios = require("axios").create({
   // baseURL: "http://localhost:5001/playback-smndhm/europe-west1/app/api",
-  baseURL: "https://europe-west1-playback-smndhm.cloudfunctions.net/app/api"
+  baseURL: "https://europe-west1-playback-smndhm.cloudfunctions.net/app/api",
 });
 
 /**
@@ -42,20 +42,20 @@ exports.getLists = async () => {
 /**
  * Get list
  */
-exports.getList = async id => {
+exports.getList = async (id) => {
   return api("GET", `/list/${id}`);
 };
 
 /**
  * Join list
  */
-exports.joinList = async id => {
+exports.joinList = async (id) => {
   return api("POST", `/list/${id}/join`);
 };
 
 /**
  * Leave list
  */
-exports.leaveList = async id => {
+exports.leaveList = async (id) => {
   return api("POST", `/list/${id}/leave`);
 };

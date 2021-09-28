@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
 };
 </script>
 
@@ -46,9 +46,15 @@ main {
   @apply rounded-full bg-blue-600 hover:bg-blue-700;
   // font
   @apply text-white font-extrabold text-xl;
-  /** .btn.btn-small */
+  // active
+  @apply transform transition-transform active:scale-95;
+  /** .btn.btn-block */
   &.btn-block {
     @apply w-full;
+  }
+  /** .btn.btn-block */
+  &.btn-small {
+    @apply py-2 px-4 text-lg;
   }
   /** disabled */
   &[disabled] {

@@ -2,10 +2,16 @@ module.exports = {
   purge: ["./src/**/*.vue"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {}
+    extend: {
+      borderRadius: {
+        "list-item": "2rem",
+      },
+    },
   },
   variants: {
-    extend: {}
+    extend: {
+      scale: ["active"],
+    },
   },
-  plugins: []
+  plugins: [],
 };

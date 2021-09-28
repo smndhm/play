@@ -1,21 +1,26 @@
 <template>
   <main id="list">
-    <div id="users">
-      <ul class="users">
-        <li class="user" v-for="user in data.users" :key="user.id">
-          <avatar :user="user" />
-        </li>
-      </ul>
-      <button role="button" class="btn" @click="join">Join</button>
-      <button role="button" class="btn" @click="leave">Leave</button>
-    </div>
+    <aside>
+      <!-- <button role="button" class="btn" @click="play">Ecouter</button> -->
+      <div>
+        <ul class="users">
+          <li class="user" v-for="user in data.users" :key="user.id">
+            <avatar :user="user" />
+          </li>
+        </ul>
+        <!-- <div class="actions">
+          <button role="button" class="btn" @click="join" v-if="!hasJoined">
+            Rejoindre
+          </button>
+          <button role="button" class="btn" @click="leave" v-else>
+            Quitter
+          </button>
+        </div> -->
+      </div>
+    </aside>
 
-    <div id="play">
-      <button role="button" class="btn" @click="play">Play</button>
-    </div>
-
-    <ul id="tracklist" class="list-item">
-      <li v-for="track in data.trackList" :key="track.id">
+    <ul id="tracklist" class="list">
+      <li v-for="track in data.trackList" :key="track.id" class="list-item">
         <data-track :track="track" :users="data.users" />
       </li>
     </ul>
@@ -59,12 +64,16 @@ export default {
       }
     },
     play() {
+      console.log(this.tracks.join(","));
       DZ.player.playTracks(this.tracks, ({ tracks }) => {
         console.log("blu", tracks);
       });
     },
   },
   computed: {
+    hasJoined() {
+      return this.data.users && this.data.users.some((user) => user.isCurrent);
+    },
     tracks() {
       return this.data.trackList.map((track) => track.id);
     },
@@ -79,25 +88,41 @@ export default {
     }
   },
   mounted() {
-    DZ.ready((dzReady) => {
-      console.log("DZ.ready", dzReady);
-      // Load tracks
-      DZ.player.playTracks(this.tracks, false, ({ tracks }) => {
-        console.log("DZ.player.playTracks", tracks);
-      });
-      DZ.Event.subscribe("current_track", function() {
-        console.log("current_track", arguments);
-      });
-    });
+    // DZ.ready((dzReady) => {
+    //   console.log("DZ.ready", dzReady);
+    //   // Load tracks
+    //   console.log(this.tracks);
+    //   DZ.player.playTracks(this.tracks, false, ({ tracks }) => {
+    //     console.log("DZ.player.playTracks", tracks, tracks.join(","));
+    //   });
+    //   DZ.Event.subscribe("current_track", function() {
+    //     console.log("current_track", arguments);
+    //   });
+    // });
   },
 };
 </script>
 
 <style lang="scss" scoped>
 main {
-  @apply text-center;
+  @apply text-left;
+  aside {
+    @apply flex justify-between;
+    .users {
+      @apply relative z-10;
+    }
+    .actions {
+      @apply -ml-6 inline relative z-0;
+      .btn {
+        @apply py-2 pl-8 pr-3 text-base;
+      }
+    }
+  }
   .list-item {
-    @apply text-left;
+    @apply py-4 px-6;
+  }
+  #tracklist {
+    @apply pt-4;
   }
 }
 </style>
