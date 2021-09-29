@@ -8,14 +8,14 @@
             <avatar :user="user" />
           </li>
         </ul>
-        <!-- <div class="actions">
+        <div class="actions">
           <button role="button" class="btn" @click="join" v-if="!hasJoined">
             Rejoindre
           </button>
           <button role="button" class="btn" @click="leave" v-else>
             Quitter
           </button>
-        </div> -->
+        </div>
       </div>
     </aside>
 
