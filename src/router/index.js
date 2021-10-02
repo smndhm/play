@@ -5,8 +5,11 @@ import Login from "../views/Login.vue";
 const requireAuth = (to, from, next) => {
   if (
     !localStorage.accessToken ||
-    JSON.parse(localStorage.accessToken).expire < Math.floor(Date.now() / 1000)
+    !JSON.parse(localStorage.accessToken).token ||
+    !JSON.parse(localStorage.accessToken).created ||
+    JSON.parse(localStorage.accessToken).created + 3600000 < Date.now() // token expire after an hour
   ) {
+    localStorage.removeItem("accessToken");
     next({
       path: "/login",
       query: { redirect: to.fullPath },

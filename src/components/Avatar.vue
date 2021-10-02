@@ -22,6 +22,8 @@ export default {
 <style lang="scss" scoped>
 .user {
   @apply rounded-full ring-2 ring-white;
+  max-height: 50px;
+  width: auto;
   &.user-creator {
     @apply ring-offset-2 ring-blue-400;
   }

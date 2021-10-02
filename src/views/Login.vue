@@ -47,6 +47,7 @@ export default {
             ? "deezer"
             : "spotify",
         token: this.$router.currentRoute._value.query.access_token,
+        created: Date.now(),
       });
       this.$router.push(this.$route.query.redirect || "/lists"); // default redirect to /lists
     }
@@ -59,8 +60,9 @@ export default {
       }&scope=${encodeURIComponent(
         this.platforms.spotify.scopes.join(" ")
       )}&redirect_uri=${encodeURIComponent(
-        `https://europe-west1-playback-smndhm.cloudfunctions.net/app/authorize/spotify`
-        //`http://127.0.0.1:5001/playback-smndhm/europe-west1/app/authorize/spotify`
+        document.location.host === "smndhm.github.io"
+          ? `https://europe-west1-playback-smndhm.cloudfunctions.net/app/authorize/spotify`
+          : `http://127.0.0.1:5001/playback-smndhm/europe-west1/app/authorize/spotify`
       )}${
         this.$router?.currentRoute?._value?.query?.redirect
           ? `&state=${encodeURIComponent(
@@ -76,8 +78,9 @@ export default {
       }&scope=${encodeURIComponent(
         this.platforms.deezer.perms.join(" ")
       )}&redirect_uri=${encodeURIComponent(
-        `https://europe-west1-playback-smndhm.cloudfunctions.net/app/authorize/deezer`
-        // `http://127.0.0.1:5001/playback-smndhm/europe-west1/app/authorize/deezer`
+        document.location.host === "smndhm.github.io"
+          ? `https://europe-west1-playback-smndhm.cloudfunctions.net/app/authorize/deezer`
+          : `http://127.0.0.1:5001/playback-smndhm/europe-west1/app/authorize/deezer`
       )}${
         this.$router?.currentRoute?._value?.query?.redirect
           ? `&state=${encodeURIComponent(

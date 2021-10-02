@@ -1,6 +1,8 @@
 const axios = require("axios").create({
-  // baseURL: "http://localhost:5001/playback-smndhm/europe-west1/app/api",
-  baseURL: "https://europe-west1-playback-smndhm.cloudfunctions.net/app/api",
+  baseURL:
+    document.location.host === "smndhm.github.io"
+      ? "https://europe-west1-playback-smndhm.cloudfunctions.net/app/api"
+      : "http://127.0.0.1:5001/playback-smndhm/europe-west1/app/api",
 });
 
 /**
